@@ -33,3 +33,17 @@
     background-color: whitesmoke;
     color: rgb(20, 20, 20);
 }
+
+.success-message {
+    background-color: green;
+    width: 100%;
+}
+
+.signup-to-login {
+    text-decoration: underline;
+}
+
+.error-message {
+    background-color: red;
+    
+}

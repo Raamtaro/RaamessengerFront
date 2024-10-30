@@ -1,14 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import './styles/Login.css'
 
 function Login() {
 
+  const formRef = useRef()
+
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
   const [error, setError] = useState(false)
+  const [success, setSucess] = useState(false) //Different from error in the sense that this is only to indicate a temporary banner in case the page takes a while to load before redirecting.
 
 
   const handleSubmit = async (event) => {
@@ -36,17 +39,18 @@ function Login() {
 
       if (response.ok) {
         const result = await response.json()
-        // console.log(result)
-
         localStorage.setItem('user', JSON.stringify(result.user))
         localStorage.setItem('token', result.token)
-
+      } else {
+        throw new Error(`HTTP error! Status: ${response.status}`)
       }
     } catch (err) {
       setError(true)
       console.error(err.message)
     } finally {
       setLoading(false)
+      formRef.current.reset()
+
     }
 
   }
@@ -54,7 +58,19 @@ function Login() {
   return (
     <>
       <section className='login-section'>
-          <form onSubmit={handleSubmit} className="login-form">
+          {
+            error && (
+              <div className="login-error-message">
+                <p className="login-error-message-text">
+                  Sorry, we couldn't process that. 
+                  <br />
+                  <br />
+                  Please try again, or contact raam.sanghani@gmail.com for support.
+                </p>
+              </div>
+            )
+          }
+          <form ref={formRef} onSubmit={handleSubmit} className="login-form">
 
             <div className="form-inputs">
               <div className="form-section">

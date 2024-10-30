@@ -1,14 +1,19 @@
 import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 import './App.css'
 
 function App() {
+  const navigate = useNavigate()
+
+  const handleHomeNav = () => {
+    navigate('/')
+  }
   
 
   return (
     <>
-      <header>
+      <header onClick={handleHomeNav}>
           Raamtaro Messenger
       </header>
       <main>

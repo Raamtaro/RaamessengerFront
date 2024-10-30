@@ -16,6 +16,8 @@ header {
   right: 0;
   padding-top: 2rem;
   padding-right: 2rem;
+
+  cursor: pointer;
 }
 
 main {
