@@ -1,0 +1,35 @@
+.login-section {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.login-form>.form-inputs>.form-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form>.form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-form>.form-inputs>.form-section>input {
+    width: 100%;
+    padding: .5rem;
+    
+}
+
+.login-form>.form-inputs>.form-section>input:focus {
+    background-color: whitesmoke;
+    color: rgb(20, 20, 20);
+}
