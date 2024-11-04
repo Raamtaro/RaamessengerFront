@@ -38,9 +38,14 @@ function Login() {
       )
 
       if (response.ok) {
+
         const result = await response.json()
+
         localStorage.setItem('user', JSON.stringify(result.user))
         localStorage.setItem('token', result.token)
+        
+        navigate(`/user/${result.user.id}`)
+
       } else {
         throw new Error(`HTTP error! Status: ${response.status}`)
       }
