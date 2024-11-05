@@ -18,6 +18,8 @@ function UserMain() { //Outlet for conversation viewer + composer
     return (
         <section className='user-main-section'>
             <NavBar />
+            <MyConversations />
+            <Outlet />
             {/* Vertical Nav Bar all the way to the left */}
             {/* Existing Chats */}
             {/* Main Outlet for the selected conversation - should default to the most recent conversation when user signs in to a fresh session */}

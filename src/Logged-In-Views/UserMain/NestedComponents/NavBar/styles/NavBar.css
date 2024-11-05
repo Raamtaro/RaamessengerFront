@@ -1,0 +1,9 @@
+ul.user-navigation-items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+.nav-item {
+    cursor: pointer;
+}
