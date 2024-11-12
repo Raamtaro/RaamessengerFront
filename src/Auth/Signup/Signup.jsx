@@ -35,7 +35,7 @@ function Signup() {
     
     try {
       const response = await fetch(
-        'http://localhost:3000/auth/signup',
+        `${import.meta.env.VITE_SERVER_URL}/auth/signup`,
         {
           method: 'POST',
           headers: {

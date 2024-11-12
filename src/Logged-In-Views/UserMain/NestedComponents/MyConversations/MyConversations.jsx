@@ -28,7 +28,7 @@ function MyConversations() {
       try {
 
         const response = await fetch(
-          'http://localhost:3000/conversation/conversations/mine',
+          `${import.meta.env.VITE_SERVER_URL}/conversation/conversations/mine`,
           {
             method: 'GET',
             headers: {
