@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
+import { useActiveConversation } from '../../Contexts/ActiveConversationContext'
 
 function MyConversations() {
-
 
   const [myConversations, setMyConversations] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  //Updating the backend to ensure that conversations are returned in descending order according to the most recent Message that is added to a conversation
+  const {selectConversation} = useActiveConversation()
 
   useEffect(()=> {
     const token = localStorage.getItem('token')
@@ -30,10 +30,13 @@ function MyConversations() {
           }
         )
 
-        if (response.ok) {
-          const result = await response.json()
-          setMyConversations(result.userConversations)
+
+        if (!response.ok) {
+          throw new Error("Couldn't retrieve conversations, please refresh and try again")
         }
+
+        const result = await response.json()
+        setMyConversations(result.userConversations)
 
       } catch(err) {
         setError(true)
@@ -46,12 +49,11 @@ function MyConversations() {
     getMyConversations()
   }, [])
 
-  // useEffect(()=> { //debug statement
-  //   if (myConversations.length > 0) {
-  //     console.log(myConversations)
-  //   }
-  // }, [myConversations])
-
+  useEffect(()=> {
+    if (myConversations.length > 0) {
+      console.log(myConversations)
+    }
+  }, [myConversations])
 
   return (
     <>
@@ -59,6 +61,22 @@ function MyConversations() {
         <h2>
           My Chats
         </h2>
+        <ul className="user-conversation-list">
+          {
+            myConversations.map(
+              (conversation, index) => (
+                <li
+                  key={index}
+                  className='user-converation-list-item'
+                  onClick={() => selectConversation(conversation)}
+
+                >
+                  {conversation.title}
+                </li>
+              )
+            )
+          }
+        </ul>
       </aside>
     </>
   )
