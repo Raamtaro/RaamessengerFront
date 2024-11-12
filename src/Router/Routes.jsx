@@ -12,6 +12,8 @@ import Signup from "../Auth/Signup/Signup.jsx";
 
 //Logged In views
 import UserMain from "../Logged-In-Views/UserMain/UserMain.jsx";
+import ConversationControl from "../Logged-In-Views/UserMain/NestedRoutes/ConversationControl/ConversationControl.jsx"
+
 import UserProfile from "../Logged-In-Views/UserProfile/UserProfile.jsx";
 
 //Protected Route views
@@ -51,7 +53,13 @@ const router = createBrowserRouter(
                     //UserMain.jsx
                     path: '/user/:id',
                     element: <ProtectedRoute> <UserMain/> </ProtectedRoute>,
-                    children: []
+                    children: [
+                        {
+                            //ConversationControl
+                            path: 'conversation/:id',
+                            element: <ConversationControl />
+                        }
+                    ]
                 },
 
                 {

@@ -1,13 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import { useActiveConversation } from '../../Contexts/ActiveConversationContext'
+import { useNavigate } from 'react-router-dom'
 
 function MyConversations() {
+
+  const navigate = useNavigate()
 
   const [myConversations, setMyConversations] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  const {selectConversation} = useActiveConversation()
+  // const {selectConversation} = useActiveConversation()
+
+  const handleNav = (conversation) => {
+    navigate(`conversation/${conversation.id}`)
+  }
 
   useEffect(()=> {
     const token = localStorage.getItem('token')
@@ -68,7 +75,7 @@ function MyConversations() {
                 <li
                   key={index}
                   className='user-converation-list-item'
-                  onClick={() => selectConversation(conversation)}
+                  onClick={() => handleNav(conversation)}
 
                 >
                   {conversation.title}
