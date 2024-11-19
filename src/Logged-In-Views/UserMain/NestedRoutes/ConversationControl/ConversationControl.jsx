@@ -46,20 +46,16 @@ function ConversationControl() {
         retrieveConversation()
 
     },[id])
-
-    // useEffect(()=> {
-    //     console.log(conversation.id)
-    // }, [conversation])
     
 
     
     return (
         <>
             <div className="conversation-viewer">
-                <h3>{conversation?.id}</h3> 
+                <h3>{conversation?.title}</h3> 
                 <div className="sent-messages">
                     {
-                        conversation.messages.map(
+                        conversation?.messages.map(
                             (message)=>(
                                 <span
                                     key={message.id}

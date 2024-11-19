@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom' //Might not need useNavigate()
 import { ActiveConversationContextProvider } from './Contexts/ActiveConversationContext.jsx'
-
+import {io} from 'socket.io-client'
 
 /**
  * Children
@@ -13,10 +13,13 @@ import MyConversations from './NestedComponents/MyConversations/MyConversations.
 
 
 
+
+
 //Routes
 
 
 function UserMain() { //Outlet for conversation viewer + composer
+    const socket = io(`${import.meta.env.VITE_SERVER_URL}`)
 
     return (
         <section className='user-main-section'>
